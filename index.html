@@ -14,6 +14,17 @@
       <p class="minimsg">Simple list of top coins with price and daily change.</p>
     </header>
 
+    <section class="controls" aria-label="Search and sort coins">
+      <input id="search" type="text" placeholder="Search by name or symbol">
+      <select id="sort">
+        <option value="market_desc">Market Cap: High to Low</option>
+        <option value="price_desc">Price: High to Low</option>
+        <option value="price_asc">Price: Low to High</option>
+        <option value="change_desc">24h Change: High to Low</option>
+        <option value="change_asc">24h Change: Low to High</option>
+      </select>
+    </section>
+
     <p id="status" class="msgx">Loading...</p>
     <section id="crypto-container" class="boxlist" ></section>
   </main>
