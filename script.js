@@ -3,12 +3,17 @@ const statusEl = document.getElementById("status");
 const searchInput = document.getElementById("search");
 const clearSearchBtn = document.getElementById("clear-search");
 const sortSelect = document.getElementById("sort");
+const refreshBtn = document.getElementById("refresh-btn");
 
 let allCoins = [];
 
 async function getCoins() {
   statusEl.textContent = "Loading...";
   container.innerHTML = "";
+  if (refreshBtn) {
+    refreshBtn.disabled = true;
+    refreshBtn.textContent = "Refreshing...";
+  }
 
   try {
     const api = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=1";
@@ -19,6 +24,11 @@ async function getCoins() {
     statusEl.textContent = "";
   } catch (e) {
     statusEl.textContent = "Error loading data.";
+  } finally {
+    if (refreshBtn) {
+      refreshBtn.disabled = false;
+      refreshBtn.textContent = "Refresh";
+    }
   }
 }
 
@@ -76,5 +86,6 @@ clearSearchBtn.addEventListener("click", () => {
   applyFilters();
   searchInput.focus();
 });
+if (refreshBtn){refreshBtn.addEventListener("click", getCoins);}
 
 getCoins();
