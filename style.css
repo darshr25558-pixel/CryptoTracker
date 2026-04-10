@@ -54,6 +54,28 @@ body {
   min-width: 230px;
 }
 
+#clear-search {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #ddd;
+  border-radius: 999px;
+  background: #fff;
+  color: #666;
+  font-size: 14px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+}
+
+#clear-search:hover {
+  background: #f3f3f3;
+}
+
+#clear-search:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
 .msgx {
   text-align: center;
   color: #666;

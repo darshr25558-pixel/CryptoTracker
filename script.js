@@ -1,6 +1,7 @@
 const container = document.getElementById("crypto-container");
 const statusEl = document.getElementById("status");
 const searchInput = document.getElementById("search");
+const clearSearchBtn = document.getElementById("clear-search");
 const sortSelect = document.getElementById("sort");
 
 let allCoins = [];
@@ -23,6 +24,7 @@ async function getCoins() {
 
 function applyFilters() {
   const query = (searchInput.value || "").trim().toLowerCase();
+  clearSearchBtn.disabled = query.length === 0;
   const sort = sortSelect.value;
 
   let filtered = allCoins.filter((coin) => {
@@ -69,5 +71,10 @@ function display(arr) {
 
 searchInput.addEventListener("input", applyFilters);
 sortSelect.addEventListener("change", applyFilters);
+clearSearchBtn.addEventListener("click", () => {
+  searchInput.value = "";
+  applyFilters();
+  searchInput.focus();
+});
 
 getCoins();
